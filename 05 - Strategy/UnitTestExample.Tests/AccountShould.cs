@@ -20,8 +20,8 @@ namespace UnitTestExample.Tests
         //{
         //    //TODO: 01 - Debemos evitar tener el constructor lleno de validaciones y tener que utilizar assert de constructor
         //    Action act = () => StandardAccountValidBuilder.Make()
-        //        .For(_invalidClient)
-        //        .With(100);
+        //                                                  .For(_invalidClient)
+        //                                                  .With(100);
 
         //    act.Should().Throw<StandardClientDoesNotHaveEnoughInitialAmount>();
         //}
@@ -38,7 +38,7 @@ namespace UnitTestExample.Tests
         //[Fact]
         //public void Not_create_Invalid_Premium_Account()
         //{
-        //    //TODO: 09 -Puedo retirar todos estos test de aqui
+        //    //TODO: 09 - Puedo retirar todos estos test de aqui
         //    Action act = () => PremiumAccountValidBuilder.Make()
         //                                                 .For(_invalidClient)
         //                                                 .With(100);

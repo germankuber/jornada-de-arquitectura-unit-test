@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-
+//TODO: 00 - Requerimiento
+//Las cuentas deben iniciar con al menos 1000
 namespace UnitTestExample.Core
 {
     public class Account
@@ -18,6 +19,19 @@ namespace UnitTestExample.Core
 
             if (!client.IsValid())
                 throw new ArgumentException(nameof(client));
+
+            //TODO: 09 - Requerimiento
+            //Las cuentas Standard  deben iniciar con al menos 1000
+            //Las cuentas Premium deben iniciar con al menos 5000
+            //if (type == AccountType.Standard && initialAmount < 1000)
+            //    throw new ArgumentException(nameof(initialAmount));
+
+            //if (type == AccountType.Premium && initialAmount < 5000)
+            //    throw new ArgumentException(nameof(initialAmount));
+
+            //if (!client.IsValid())
+            //    throw new ArgumentException(nameof(client));
+
             Client = client;
             Amount = initialAmount;
             Type = type;

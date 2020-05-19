@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-
 namespace UnitTestExample.Core
 {
     public class Account
@@ -8,6 +7,11 @@ namespace UnitTestExample.Core
         public Client Client { get; }
         public decimal Amount { get; private set; }
         public List<Transactions> Transactions { get; } = new List<Transactions>();
+
+
+        //public Account(Client client, decimal initialAmount, AccountType type)
+
+
         public Account(Client client, decimal initialAmount)
         {
             if (initialAmount <= 0)
@@ -15,6 +19,7 @@ namespace UnitTestExample.Core
 
             if (!client.IsValid())
                 throw new ArgumentException(nameof(client));
+                
             Client = client;
             Amount = initialAmount;
         }
@@ -29,6 +34,5 @@ namespace UnitTestExample.Core
             Amount = Amount - amount;
             Transactions.Add(new Transactions(TransactionsType.Transfer, amount));
         }
-
     }
 }

@@ -1,30 +1,14 @@
 using Castle.Core.Logging;
+
 using UnitTestExample.Core;
 
 namespace UnitTestExample.Tests
 {
-    //TODO: 06 -Implmento Builder especificos. 
-    public class StandardAccountValidBuilder : IAccountWithBuilder, IAccountForBuilder
-    {
-        private readonly AccountBuilder _builder;
-
-        private StandardAccountValidBuilder()
-        {
-            _builder = new AccountBuilder().Standard();
-        }
-
-        public static IAccountForBuilder Make() => new StandardAccountValidBuilder();
-        public Account With(decimal amount) =>
-            _builder.With(amount).Build();
-
-        public IAccountWithBuilder For(Client client)
-        {
-            _builder.For(client);
-            return this;
-        }
-    }
-
     //TODO: 07 - Version Premium del builder
+    public interface IAccountTypeBuilder
+    {
+        IAccountForBuilder Type(AccountType type);
+    }
     public interface IAccountForBuilder
     {
         IAccountWithBuilder For(Client client);
@@ -33,10 +17,7 @@ namespace UnitTestExample.Tests
     {
         Account With(decimal amount);
     }
-    public interface IAccountTypeBuilder
-    {
-        IAccountForBuilder Type(AccountType type);
-    }
+
 
     public class AccountBuilder
     {

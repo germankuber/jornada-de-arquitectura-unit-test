@@ -1,7 +1,10 @@
 using System;
 using System.Linq;
+
 using FluentAssertions;
+
 using UnitTestExample.Core;
+
 using Xunit;
 
 namespace UnitTestExample.Tests
@@ -19,22 +22,26 @@ namespace UnitTestExample.Tests
 
 
         [Fact]
-        public void Not_create_Invalid_Standard_Account()
+        public void Not_Create_Invalid_Standard_Account()
         {
             //TODO: 02 - Creo un cliente standard invalido
-            Action act = () => CreateInValidSut().Standard().With(100).Build();
+            Action act = () => CreateInValidSut().Standard()
+                                                 .With(100)
+                                                 .Build();
 
             //TODO: 04 - Valido la exception personalizada
-            act.Should().Throw<StandardClientDoesNotHaveEnoughInitialAmount>();
+            act.Should()
+               .Throw<StandardClientDoesNotHaveEnoughInitialAmount>();
         }
         [Fact]
-        public void Not_create_Invalid_Premium_Account()
+        public void Not_Create_Invalid_Premium_Account()
         {
-            //TODO: 02 - Creo un cliente standard invalido
-            Action act = () => CreateInValidSut().Standard().With(100).Build();
+            Action act = () => CreateInValidSut().Premium()
+                                                 .With(100)
+                                                 .Build();
 
-            //TODO: 04 - Valido la exception personalizada
-            act.Should().Throw<StandardClientDoesNotHaveEnoughInitialAmount>();
+            act.Should()
+               .Throw<PremiumClientDoesNotHaveEnoughInitialAmount>();
         }
 
 
@@ -43,8 +50,13 @@ namespace UnitTestExample.Tests
         {
             Action act = () => CreateInValidSut().Standard().With(10000).Build();
 
-            act.Should().Throw<ArgumentException>()
-                .WithMessage("client"); ;
+            //04 - Utilizo excepciones personalizadas
+            //act.Should()
+            // .Throw<ArgumentException>()
+            // .WithMessage("client");
+
+            act.Should()
+               .Throw<AccountValidClientException>();
         }
 
         [Fact]
@@ -54,8 +66,9 @@ namespace UnitTestExample.Tests
 
             Action act = () => sut.Transfer(2000, new Client(DateTime.Now));
 
-            act.Should().Throw<ArgumentException>()
-                .WithMessage("amount");
+            act.Should()
+               .Throw<ArgumentException>()
+               .WithMessage("amount");
         }
 
         private Client _validClient = new Client(DateTime.Now.AddYears(-20));
@@ -63,14 +76,15 @@ namespace UnitTestExample.Tests
         public void Not_Transfer_Money_Client_Is_Not_Valid()
         {
             //TODO: 08 - Utilización de builder especifico
-            var sut = StandardAccountValidBuilder.Make()
-                                                       .For(_validClient)
-                                                       .With(1500);
+            var sut = StandardAccountBuilder.Make()
+                                            .For(_validClient)
+                                            .With(1500);
 
             Action act = () => sut.Transfer(10, new Client(DateTime.Now));
 
-            act.Should().Throw<ArgumentException>()
-                .WithMessage("client");
+            act.Should()
+               .Throw<ArgumentException>()
+               .WithMessage("client");
         }
 
         [Theory]
@@ -97,8 +111,10 @@ namespace UnitTestExample.Tests
 
             sut.Transactions.Count.Should().Be(1);
 
-            transaction.Amount.Should().Be(45);
-            transaction.Type.Should().Be(TransactionsType.Transfer);
+            transaction.Amount.Should()
+                              .Be(45);
+            transaction.Type.Should()
+                            .Be(TransactionsType.Transfer);
             //transaction.Date.Should().Be(DateTime.Now); // ?
         }
     }

@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
 
+//TODO: 00 - Requerimiento
+//Al momento de crear la cuenta se debe establecer que tipo de cuenta se esta creando
+//Standard
+//Premium
 namespace UnitTestExample.Core
 {
     public class Account
@@ -36,3 +40,7 @@ namespace UnitTestExample.Core
 
     }
 }
+
+
+//TODO: 09 - Requerimiento
+//Las cuentas deben iniciar con al menos 1000

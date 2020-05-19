@@ -32,7 +32,7 @@ namespace UnitTestExample.Tests.Builder
             _amount = amount;
             return this;
         }
-        //TODO : 07 -  Utilizo el builder para construir mi instancia de Account
+        //TODO: 07 -  Utilizo el builder para construir mi instancia de Account
         public Account Build() => AccountBuilder
             .Make(new StandardAccount(new PremiumAccount(new ValidClientAccount(null))))
             .Type(_type)

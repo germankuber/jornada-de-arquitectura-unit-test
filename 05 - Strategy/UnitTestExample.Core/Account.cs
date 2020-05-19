@@ -26,10 +26,12 @@ namespace UnitTestExample.Core
         //    Amount = initialAmount;
         //    Type = type;
         //}
+
+
+
         internal Account(Client client, decimal initialAmount, AccountType type)
         {
-            //TODO: 06 -Libero al constructor de responsabilidades y futuras modificaciones por reglas de negocio
-
+            //TODO: 04 -Libero al constructor de responsabilidades y futuras modificaciones por reglas de negocio
             Client = client;
             Amount = initialAmount;
             Type = type;

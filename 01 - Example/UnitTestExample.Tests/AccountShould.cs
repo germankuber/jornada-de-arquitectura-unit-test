@@ -14,7 +14,7 @@ namespace UnitTestExample.Tests
             Action act = () => new Account(new Client(DateTime.Now.AddYears(-10)), 100);
 
             act.Should().Throw<ArgumentException>()
-                .WithMessage("client"); ;
+                        .WithMessage("client");
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace UnitTestExample.Tests
             Action act = () => new Account(new Client(DateTime.Now.AddYears(-20)), 0);
 
             act.Should().Throw<ArgumentException>()
-                .WithMessage("initialAmount"); ;
+                        .WithMessage("initialAmount");
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace UnitTestExample.Tests
             Action act = () => sut.Transfer(450, new Client(DateTime.Now));
 
             act.Should().Throw<ArgumentException>()
-                .WithMessage("amount");
+                        .WithMessage("amount");
         }
 
         [Fact]
@@ -45,7 +45,7 @@ namespace UnitTestExample.Tests
             Action act = () => sut.Transfer(450, new Client(DateTime.Now));
 
             act.Should().Throw<ArgumentException>()
-                .WithMessage("client");
+                        .WithMessage("client");
         }
 
         [Fact]
@@ -55,7 +55,8 @@ namespace UnitTestExample.Tests
 
             sut.Transfer(450, new Client(DateTime.Now.AddYears(-19)));
 
-            sut.Amount.Should().Be(1500 - 450);
+            sut.Amount.Should()
+                      .Be(1500 - 450);
         }
 
         [Fact]
@@ -69,8 +70,11 @@ namespace UnitTestExample.Tests
 
             sut.Transactions.Count.Should().Be(1);
 
-            transaction.Amount.Should().Be(450);
-            transaction.Type.Should().Be(TransactionsType.Transfer);
+            transaction.Amount.Should()
+                              .Be(450);
+
+            transaction.Type.Should()
+                            .Be(TransactionsType.Transfer);
             //transaction.Date.Should().Be(DateTime.Now); // ?
 
         }
